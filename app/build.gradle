@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.1.0'
+        classpath 'com.android.tools.build:gradle:+'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:+'
+    }
+}
+
+apply plugin:'android'
+apply plugin: 'hugo'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 'android-L'
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "com.example.chethan.test"
+        minSdkVersion 19
+        targetSdkVersion 'L'
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'uk.co.ribot:easyadapter:1.1.+'
+    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'com.github.frankiesardo:auto-parcel:+'
+    apt 'com.github.frankiesardo:auto-parcel-processor:+'
+    compile files('libs/gson-1.7.1.jar')
+    compile files('libs/joda-time-2.3.jar')
+    compile 'com.jakewharton.timber:timber:2.4.+'
+    compile 'com.github.gabrielemariotti.cards:library:1.8.0'
+    compile 'com.github.citux:datetimepicker:0.1.0'
+    compile 'com.android.support:support-v13:20.+'
+    compile 'com.quentindommerc.superlistview:library:1.5.2'
+}
